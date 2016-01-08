@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="es">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title> gulp vs grunt</title>
+
+		<meta name="description" content="Automatizadores de tareas">
+		<meta name="author" content="mmfilesi">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="../../bower_components/reveal/css/reveal.css">
+		<link rel="stylesheet" href="../../bower_components/reveal/css/theme/night.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="../../bower_components/reveal/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../bower_components/reveal/css/print/pdf.css' : '../../bower_components/reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+			<!--[if lt IE 9]>
+			<script src="lib/js/html5shiv.js"></script>
+			<![endif]-->
+
+			<style>
+				/* todo: sacar a un reset */
+				.reveal pre {
+					width: 100%;
+					font-size: 0.75em;
+					line-height: 1.2em;
+				}
+			</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+
+					<!-- slide 1 -->
+					<section>
+						<h1>grunt vs gulp</h1>
+						<h4>automatizadores de tareas</h4>
+					</section>
+
+					<!-- slide 2 -->
+					<section>
+						<h3>dos grandes automatizadores</h3>
+						<h4>(aunque hay más)</h4>
+							<dl>
+								<dt>grunt</li>
+									<dd>trabaja con archivos temporales</dd>
+									<dt>gulp</li>
+									<dd>trabaja con streams</dd>
+							</dl>
+					</section>
+
+					<!-- slide 3 -->
+					<section>
+						<h2>1. Comparación general</h2>
+						<table> 
+						  <tr>
+						    <th>grunt</th>
+						    <th>gulp</th> 
+						  </tr>
+						  <tr>
+						    <td>node + npm</td>
+						    <td>node + npm</td> 
+						  </tr>
+						  <tr>
+						    <td>v0.4.5 [-2, 3]</td>
+						    <td>v3.9.0</td> 
+						  </tr>
+						  <tr>
+						    <td>+ lento</td>
+						    <td>+ rápido</td> 
+						  </tr>
+						  <tr>
+						    <td>+ sencillo</td>
+						    <td>+ complejo</td> 
+						  </tr>	
+						  <tr>
+						    <td>4.403 plugins</td>
+						    <td>2.083 plugins</td> 
+						  </tr>		
+						</table>
+					</section>
+
+					<!-- slide 4 -->
+					<section>
+						<h2>2. En git-hub</h2>
+						<h3>(08/01/2016)</h3>
+						<table> 
+						  <tr>
+						  	<th></th>
+						    <th>grunt</th>
+						    <th>gulp</th> 
+						  </tr>
+						  <tr>
+						    <td>stars</td>
+						    <td>10.376</td>
+						    <td>18.555</td> 
+						  </tr>
+						  <tr>
+						    <td>issues</td>
+						    <td>116 open / 909 closed</td>
+						    <td>38 open / 1.0127 closed</td> 
+						  </tr>
+						  <tr>
+						    <td>contributors</td>
+						    <td>56</td>
+						    <td>7</td> 
+						  </tr>
+						  <tr>
+						    <td>release</td>
+						    <td>8</td>
+						    <td>15</td> 
+						  </tr>
+						  <tr>
+						    <td>last commit</td>
+						    <td>Jan 5, 2016</td>
+						    <td>Jan 1, 2016</td> 
+						  </tr>
+						</table>
+					</section>
+
+					<!-- slide 5 -->
+					<section>
+						<h2>3. El logo de grunt es más divertido</h2>
+						<img src="img/grunt-gulp.png">
+					</section>
+
+					<!-- slide 5 -->
+					<section>
+					<!-- slide 5.1 -->
+						<section>
+							<h2>4. Lo más importante</h2>
+							<p>grunt es configuración</p>
+							<p>gulp es programación</p>
+						</section>
+					<!-- slide 5.2 -->
+						<section>
+							<h3>grunt</h3>
+							<pre><code class="hljs" data-trim>
+'use strict';
+
+module.exports = function(grunt) {
+
+  require('load-grunt-tasks')(grunt);
+
+  grunt.initConfig({
+      uglify: {
+          js: {
+              options: {
+                mangle: false,
+                sourceMap: true,
+                drop_console: true,
+                sourceMapName: 'dist/js/app.map'
+              },
+          files: [{
+                    src: 'src/js/**/*.js',
+                    dest: 'dist/js/app.min.js'
+            }]
+          }
+      }
+
+  });
+  grunt.registerTask('default', ['uglify']);
+};
+						</code></pre>
+					</section>
+					<!-- slide 5.3 -->
+					<section>
+						<h3>gulp</h3>
+						<pre><code class="hljs" data-trim>
+const gulp = require('gulp');
+const uglify = require('gulp-uglify');
+const concat = require('gulp-concat');
+const sourcemaps 	= require('gulp-sourcemaps');
+
+var configUglify = {
+	mangle: false,
+	compress: {
+		sequences: true,
+		properties: true,
+		dead_code: true,
+		drop_debugger: true,
+		drop_console: true,
+		conditionals: true,
+		comparisons: true,
+		booleans: true,
+		if_return: true,
+		join_vars: true,
+		warnings: true
+		
+	},
+	outSourceMap: true
+};
+
+var configMap = {
+	loadMaps: false,
+    debug: true
+};
+
+var configConcat = {
+	newLine:'\n;'
+};      
+
+gulp.task('default', () => {
+	return gulp
+		.src('src/js/**/*.js')
+		.pipe(plumber())
+		.pipe(sourcemaps.init(configMap))
+        .pipe(concat('app.js', configConcat))
+		.pipe(uglify(configUglify))
+       	.pipe(sourcemaps.write('.', {
+            includeContent: true,
+            sourceRoot: '/',
+        }))
+        .pipe(plumber.stop())
+		.pipe(gulp.dest('dist/js/'));
+});
+						</code></pre>
+					</section>
+			</section>
+
+			<!-- slide 6 -->
+			<section>
+				<h2 class="fragment">¿Entonces?</h2>
+    		<p class="fragment fade-in">
+    			da igual uno que otro<br>
+    			escoge con el que te sientas más cómodo... 
+    		</p>
+    		<p class="fragment fade-in">
+    			o cualquier otra cosa, como el npm
+    		</p>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="../../bower_components/reveal/lib/js/head.min.js"></script>
+	<script src="../../bower_components/reveal/js/reveal.js"></script>
+
+	<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+				{ src: '../../bower_components/reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: '../../bower_components/reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../../bower_components/reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: '../../bower_components/reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: '../../bower_components/reveal/plugin/zoom-js/zoom.js', async: true },
+				{ src: '../../bower_components/reveal/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+	</html>
