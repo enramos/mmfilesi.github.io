@@ -1,0 +1,29 @@
+.reveal pre {
+	width: 100%;
+	font-size: 0.75em;
+	line-height: 1.2em;
+}
+
+p {
+	text-align: left;
+}
+
+body .color-secondary {
+	color: #EAA000;
+}
+
+.title-primary {
+
+}
+
+.title-secondary {
+
+}
+
+.title-secondary-num {
+
+}
+
+.font-important-03 {
+	font-weight: bold;
+}
