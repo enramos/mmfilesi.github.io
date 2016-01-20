@@ -1,0 +1,21 @@
+{
+  "name": "polymer",
+  "homepage": "https://github.com/mmfilesi/mmfilesi.github.io",
+  "authors": [
+    "mmfilesi <mmfilesi@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "google-map": "GoogleWebComponents/google-map#~1.1.8"
+  }
+}

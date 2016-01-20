@@ -1,0 +1,41 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<dom-module id="star-wars">
+    
+    <template>
+        <article id="main">
+            <h3><content select="#name"></content></h3>
+            <ul id="description">
+                <li><b>especie:</b> <content id="specie" select="#specie"></content>
+                <li><b>planeta natal:</b> <content select="#homeworld"></content></li>
+                <li><b>ocupación:</b> <content select="#occupation"></content></li>
+            </ul>
+            <aside>
+                <h4>Imágenes <span id="imagesLength"></span></h4>
+                <content id="images" select=".images"></content>
+            </aside>
+        </article>
+    </template>
+
+    <script>
+        
+        Polymer({
+            is: "star-wars",
+            
+            ready: function() {
+                var images = Polymer.dom(this.$.images).getDistributedNodes();
+                if (images.length) {
+                    document.getElementById("imagesLength").textContent = images[0].children.length;
+                } else {
+                    /* Si no hay imágenes, nos cargamos el nodo */
+                    var imageList = Polymer.dom(this.root).querySelector("aside");
+                    Polymer.dom(this.$.main).removeChild(imageList);
+                }               
+            }
+        });
+        
+    </script>
+
+</dom-module>
+
+
+

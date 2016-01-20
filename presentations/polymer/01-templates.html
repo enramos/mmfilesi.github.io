@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>taller: presentación polymer</title>
+
+    <meta name="description" content="taller: presentación polymer">
+    <meta name="author" content="mmfilesi">
+    <meta name="Copyright" content="cc-by-sa">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui, shrink-to-fit=no">
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <!-- cargamos el polyfil -->
+  <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+  </head>
+
+  <body>
+    <!-- TEMPLATES -->
+    <h3>Templates</h3>
+    <div id="jurasic-era"></div>
+    <template id="plantillaDinosaurios">
+      <p>Soy un triceratops</p>
+    </template>
+    <script>
+      /* leemos el CONTENTnido de la plantilla */
+      var miTemplate  = document.getElementById("plantillaDinosaurios").content;
+      /* convertimos el DocumentFragment en nodos */
+      var nodosListos = document.importNode(miTemplate, true);
+      /* Seleccionamos un contenedor e insertamos los nodos */
+      var contenedor  = document.getElementById("jurasic-era");
+      contenedor.appendChild(nodosListos);
+    </script>
+  </body>
+</html>

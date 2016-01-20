@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>taller: presentación polymer</title>
+
+    <meta name="description" content="taller: presentación polymer">
+    <meta name="author" content="mmfilesi">
+    <meta name="Copyright" content="cc-by-sa">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui, shrink-to-fit=no">
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- cargamos el polyfil -->
+    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+    </head>
+
+    <body>
+      <!-- 1. shadow dom -->
+      <!-- (que no se nos olvide habilitar la consola) -->
+      <article id="nodo-sombra">
+        <p>Zasprist!</p>
+      </article>
+      <script>
+        // para crear un nodo en la sombra: createShadowRoot() (próximamente, attachShadow)
+        var shadow = document.getElementById("nodo-sombra").createShadowRoot();
+      </script>
+
+      <!-- 2. estilos en la sombra -->
+      <p>Un párrafo en el light-dom</p>
+      <article id="shadow-root"></article>
+      
+      <template id="foo">
+        <style>
+          p {
+            color: #D00000;
+            font-weight: bold;
+          }
+        </style>
+        <p>Contenido de la plantilla</p>
+      </template>
+
+      <script>
+        /* Seleccionamos el contenido de la plantilla */
+        var plantilla = document.getElementById("foo").content;
+        /* Lo convertimos en nodos trabajables */
+        var nodosListos = document.importNode(plantilla, true);
+        /* Seleccionamos el nodo desde el que crearemos un nuevo árbol */
+        var shadowRoot = document.getElementById("shadow-root").createShadowRoot();
+        /* Insertamos dentro la plantilla */
+        shadowRoot.appendChild(nodosListos);
+      </script>
+
+      <!-- 3. scripts en la sombra -->
+      <p id="mismoId">Otro párrafo</p>
+      <article id="shadow-root-container"></article>
+        <template id="miTemplate">
+          <p id="mismoId">plantilla</p>
+        </template>
+      <script>
+        var plantilla2 = document.getElementById("miTemplate").content;
+        var nodosListos2 = document.importNode(plantilla2, true);
+        var shadowRoot2 = document.getElementById("shadow-root-container").createShadowRoot();
+        shadowRoot2.appendChild(nodosListos2);
+        /* Esto solo afecta al id "mismoId" de la plantilla */
+        shadowRoot2.getElementById("mismoId").style.color = "blue";
+      </script>
+
+      <!-- 4. puntos de insercción -->
+      <article id="container-proteo">
+        <span id="formaProteo">león</span>
+      </article>
+      <input type="text" id="js-cambiaProteo">
+      <template id="plantillaProteo">
+        <p id="parrafoShadow">Soy proteo y ahora soy un</p>
+        <!-- SELECTcionamos. (próximamente, content será "spot") -->
+        <content select="span"></content>
+      </template>
+      <script>
+        var plantilla3 = document.getElementById("plantillaProteo").content;
+        var nodosListos3 = document.importNode(plantilla3, true);
+        var shadowRoot3 = document.getElementById("container-proteo").createShadowRoot();
+        shadowRoot3.appendChild(nodosListos3);
+      </script>
+
+      <script>
+        document.getElementById("js-cambiaProteo").addEventListener("keyup", function() {
+          document.getElementById("formaProteo").innerHTML = this.value
+        });
+      </script>
+
+    </body>
+</html>

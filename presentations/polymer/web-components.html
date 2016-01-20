@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>taller: presentación polymer</title>
+
+    <meta name="description" content="taller: presentación polymer">
+    <meta name="author" content="mmfilesi">
+    <meta name="Copyright" content="cc-by-sa">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui, shrink-to-fit=no">
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- cargamos el polyfil -->
+    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="bower_components/google-map/google-map.html">
+    </head>
+
+    <body>
+
+      <!-- Un web component es una pieza encapsulada de css y js -->
+      <style>
+        google-map {
+          height: 300px;
+          width: 300px;
+        }
+      </style>
+      <h3>Componentes</h3>
+      <google-map latitude="37.77493" longitude="-122.41942"></google-map> 
+      </script>
+    </body>
+</html>

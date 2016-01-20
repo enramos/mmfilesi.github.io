@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>taller: presentación polymer</title>
+
+    <meta name="description" content="taller: presentación polymer">
+    <meta name="author" content="mmfilesi">
+    <meta name="Copyright" content="cc-by-sa">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui, shrink-to-fit=no">
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- cargamos el polyfil -->
+    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    </head>
+
+    <body>
+
+      <!-- CUSTOM ELEMENTS -->
+      <h3>Custom elements</h3>
+      <!-- nuestro componente centauro -->
+      <ce-centauro></ce-centauro>
+      <script>
+        /* Dos ideas previas: */
+        /* 1. Los nodos son objetos */
+        var nodo = document.getElementById("js-unNodoCualquiera");
+        for (var i in nodo) {
+          console.log(i);
+        }
+        /* 2. Podemos crear objetos con Object.create(PROTOTIPO) */
+       // console.clear();
+        var Gato = {
+          maullar: function() {
+            console.log("Miaaau!");
+          }
+        };
+        var miGata = Object.create(Gato);
+        miGata.maullar(); // Miaaau!
+
+        /* Un custom-element */
+        // Lo creamos...
+        var prototipoCentauro = Object.create(HTMLElement.prototype);
+        /* Hay 4 llamadas callback en el ciclo de vida de un custom-element:
+          Cuando se crea - createdCallback.
+          Cuando se inserta - attachedCallback.
+          Cuando se quita - detachedCallback).
+          Cuando cambia algún atributo - attributeChangedCallback). */
+        prototipoCentauro.createdCallback = function() {
+          this.textContent = "Soy un centauro que vigila los bosques";
+        }
+        // Lo registramos
+        document.registerElement("ce-centauro", {
+          prototype: prototipoCentauro
+        });
+
+      </script>
+
+      <p>Plus: también podemos "extender tags"</p>
+      <input is="in-input"></input>
+      <script>
+        var prototipoInputExtendido = Object.create(HTMLInputElement.prototype);
+          prototipoInputExtendido.createdCallback = function() {
+          this.style.fontWeight = "900";
+          this.style.color = "red";
+        }
+        document.registerElement("in-input", {
+          prototype: prototipoInputExtendido,
+          extends:'input'
+        });
+    </script>
+    </body>
+</html>

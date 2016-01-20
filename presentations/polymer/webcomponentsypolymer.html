@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>polymer y los web components</title>
+
+    <meta name="description" content="polymer y los web components">
+    <meta name="author" content="mmfilesi">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../../bower_components/reveal/css/reveal.css">
+    <link rel="stylesheet" href="../../bower_components/reveal/css/theme/night.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../../bower_components/reveal/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../../bower_components/reveal/css/print/pdf.css' : '../../bower_components/reveal/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <link rel="stylesheet" href="../css/the-bit.css">
+
+      <!--[if lt IE 9]>
+      <script src="lib/js/html5shiv.js"></script>
+      <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h1 class="title-primary color-secondary">taller IV</h1>
+          <h2 class="title-secondary">introducción a los web components y polymer</h2>
+        </section>
+
+        <section>
+          <h3>1. ¿Qué va a suceder en el 2016?</h3>
+          <h4 class="title-secondary">Algunas pistas...</h4>
+          <ul>
+            <li class="fragment fade-in">material design de google</li>
+            <li class="fragment fade-in">sass (ie, bootstrap 4)</li>
+            <li class="fragment fade-in">módulos y bundleadores (de require a jspm)</li>
+            <li class="fragment fade-in">node++</li>
+            <li class="fragment fade-in">¿arrancará angular 2.*</li>
+            <li class="fragment fade-in">¿se forkeará angular 1.*?</li>
+            <li class="fragment fade-in">consolidación de npm y demás herramientas front</li>
+            <li class="fragment fade-in">ecmaScript 6 && babel</li>
+            <li class="fragment fade-in">pero, sobre todo, se hablará de <span class="color-secondary">web-components</span>... o eso espero :P</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>2. ¿Qué es un web-component?</h3>
+          <p>Una pieza encapsulada y autónoma de código html, css y js</p>
+          <pre><code class="hljs" data-trim>
+<style>
+  google-map {
+  height: 300px;
+  width: 300px;
+  }
+</style>
+<google-map latitude="37.77493" longitude="-122.41942"></google-map> 
+</script>
+          </pre></code>
+          <p><a href="web-components.html" target="_blank">demo</a> </p>
+        </section>
+
+        <section>
+          <section>
+            <h3>3. can i use?</h3>
+            <p>ains... la tostadora</p>
+            <img src="wc-browser-suport.png">
+          </section>
+          <section>
+          <p>peeero, parece que 
+          <a href="https://blogs.windows.com/msedgedev/2015/07/15/microsoft-edge-and-web-components/" target="_blank">se van a poner pilas</a></p>
+          </section>
+          <section>
+            <h3>Los polyfil de <a href="http://webcomponents.org/" target="_blank">webcomponents.org</a> al rescate</h3>
+            <img src="wx-polymer-polyfil.png">
+          </section>
+        </section>
+
+        <section>
+          <h3>4. Algunas cuestiones prácticas</h3>
+          <ul>
+            <li class="fragment fade-in">Sus principales valores son la portabilidad
+            y la perdurabilidad</li>
+            <li class="fragment fade-in">Una curva (muy) alta de aprendizaje para crearlos<br>
+            Hay que manejarse bien con html, css y js
+            </li>
+            <li class="fragment fade-in">No son fáciles de hacer (el caso bootstrap)</li>
+            <li class="fragment fade-in">No se llevan bien con jQuery</li>
+            <li class="fragment fade-in">Son compatibles con los test</li>
+            <li class="fragment fade-in">Son compatibles con angular</li>
+        </section> 
+
+        <section>
+          <h3>4. Los 4 pilares</h3>
+          <ul>
+            <li>templates</li>
+            <li>custom-elements</li>
+            <li>imports</li>
+            <li>shadow dom</li>
+        </section> 
+
+        <section>
+          <h3>5. Librerías</h3>
+          <ul>
+            <li>react</li>
+            <li>x-tags</li>
+            <li>polymer</li>
+        </section> 
+
+        <section>
+          <h3>6. polymer-kit</h3>
+        </section>
+
+        <section>
+          <h3>7. arrakis-js</h3>
+        </section> 
+<!--
+http://www.2ality.com/2015/08/web-component-status.html
+https://www.youtube.com/watch?t=124&v=g0TD0efcwVg
+http://ianfeather.co.uk/practical-questions-around-web-components/
+
+
+http://webcomponents.org/presentations/complementarity-of-react-and-web-components-at-reactjs-conf/
+http://webcomponents.org/presentations/polymer-state-of-the-union-at-chrome-devsummit/
+
+http://webcomponents.org/presentations/creating-container-components-in-web-components-and-angular/
+ https://medium.com/google-developer-experts/polymer-unit-testing-d6a69910dc31#.v9ukc8rcs
+ https://medium.com/google-developer-experts/polymer-testing-tips-f217ba94a64#.jn8g87iko       
+http://ianfeather.co.uk/practical-questions-around-web-components/
+http://www.mmfilesi.com/blog/10-razones-para-escoger-un-proyecto/
+https://aerotwist.com/blog/polymer-for-the-performance-obsessed/-->
+    </div>
+  </div>
+
+  <script src="../../bower_components/reveal/lib/js/head.min.js"></script>
+  <script src="../../bower_components/reveal/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        width: 1024, 
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+        { src: '../../bower_components/reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '../../bower_components/reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '../../bower_components/reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '../../bower_components/reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: '../../bower_components/reveal/plugin/zoom-js/zoom.js', async: true },
+        { src: '../../bower_components/reveal/plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+  </html>

@@ -1,0 +1,42 @@
+
+<template id="plantilla-duende">
+    <style>
+        /* como no está encapuslado en su shadow dom,
+        este estilo afecta al contenedor y viceversa */
+        p {
+            color: #090;
+        }
+    </style>
+    <p>Soy una plantilla formidable</p>
+</template>
+
+<script>
+    var prototipoDuende = Object.create(HTMLElement.prototype);
+
+    /* Esto no funciona, ya que document se refiere al documento principal 
+    var plantillaDuende = document.getElementById("plantilla-duende").content;
+    */
+    
+    /* Utilizamos currentScript para indicar que se trata de este documento */
+    var plantillaDuende = document._currentScript.ownerDocument.getElementById("plantilla-duende").content;
+
+
+    prototipoDuende.createdCallback = function() {
+        var nombre = this.getAttribute("nombre");
+
+        /* Importamos el contenido de la plantilla */
+        var cloneDuende = document.importNode(plantillaDuende, true);
+
+        /* Seleccionamos el párrafo de la plantilla y le insertamos el nombre */                
+        cloneDuende.querySelector("p").textContent = nombre;
+
+        /* Insertamos en "este" tag (this) el clone */                
+        this.appendChild(cloneDuende);
+
+    }
+
+    document.registerElement("da-duende", {
+       prototype: prototipoDuende 
+    });
+    
+</script>
