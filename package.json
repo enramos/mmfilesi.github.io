@@ -1,0 +1,28 @@
+{
+  "name": "the-bit-jazz-lab",
+  "version": "1.0.1",
+  "description": "expermiental site",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmfilesi/mmfilesi.github.io.git"
+  },
+  "author": "mmfilesi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mmfilesi/mmfilesi.github.io/issues"
+  },
+  "homepage": "https://github.com/mmfilesi/mmfilesi.github.io#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.21",
+    "karma-jasmine": "^0.3.7",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "phantomjs-prebuilt": "^2.1.4",
+    "q": "^1.4.1"
+  }
+}

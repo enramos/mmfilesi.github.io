@@ -1,21 +1,98 @@
 <!doctype html>
-<html lang="en">
+<html class="no-js" lang="es">
 
-	<head>
-		<meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="mmfilesi">
+        <meta name="Copyright" content="cc-by-sa">
+        <meta name="description" content="experimental site">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">    
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-		<title>The Bit Jazz Band</title>
 
-		<meta name="description" content="sitio experimental">
-		<meta name="author" content="mmfilesi">
+        <title>the bit jazz lab</title>
 
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+        <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+        <link rel="import" href="bower_components/polymer/polymer.html">
 
-    </head>
-    <body>
-            ...probando, probando...
+        <link rel="stylesheet" type="text/css" media="all" href="app/styles/style.css">
+
+        <link rel="import" href="app/components/components.html">
+
+        <style>
+            /* todo: llevar al sass; */
+            .fade.ng-enter {
+              transition:0.5s linear all;
+              opacity:0;
+            }
+            .fade.ng-enter.ng-enter-active {
+              opacity:1;
+            }
+
+            .msg-danger {
+                border: 1px solid red;
+                background: #FFD1D1;
+                font-weight: bold;
+                padding: 1em;
+                font-size: 1.2em;
+                color: #6A0027;
+                border-radius: 5px
+            }
+        </style>
+
+	</head>
+
+    <body ng-app="bjLab" itemscope itemtype="http://schema.org/WebPage">
+        <!--[if lt IE 10]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="wrap box-standar">
+
+            <header role="banner" class="main-header" itemscope itemtype="http://schema.org/WPHeader">
+                <a href="http://mmfilesi.github.io/">
+                    <img src="app/styles/img/main-title.png" class="img-responsive" alt="The Bit Jazz Band">
+                </a>
+            </header>
+
+            <nav class="main-nav">
+                <div class="search">
+                    <input type="text" class="inputSearch" placeholder="buscar" id="js-searchInput">
+                </div>
+                <ul role="navigation">
+                    <li class="link"><a href="http://www.mmfilesi.com/">portada</a></li> <span class="sep">|</span> 
+                    <li class="link"><a href="http://www.mmfilesi.com/tcabaret/">tannhäuser</a></li> <span class="sep">|</span> 
+                    <li class="link"><a href="http://mmfilesi.github.io/presentations/">talleres</a></li> <span class="sep">|</span> 
+                    <li class="link"><a href="mailto:mmfilesi@gmail.com">contactar</a></li> <span class="sep">|</span> 
+                </ul>
+            </nav>
+
+            <div ui-view></div>
+
+            <footer class="main-footer">
+                <div itemscope itemtype="http://schema.org/CreativeWork" class="license box-license box-standar">
+                    <span itemprop="copyrightHolder" itemscope itemtype="http://schema.org/Person">
+                    <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.es_CO"><img alt="Licencia Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">mmfilesi</span> por <a xmlns:cc="http://creativecommons.org/ns#" href="http://www.mmfilesi.com/" property="cc:attributionName" rel="cc:attributionURL"><span itemprop="name">marcos m&eacute;ndez filesi</span></a> se encuentra bajo una<br /> <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.es_CO">Licencia Creative Commons Atribucion-CompartirIgual 3.0 Unported</a>.<br />Basada en una obra en <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.mmfilesi.com/" rel="dct:source"><span itemprop="url">http://www.mmfilesi.com/</span></a>.
+                    </span>
+                </div> <!-- #CreativeWork -->
+            </footer>
+
+        </div> <!-- wrap -->
+
+        <script src="/bower_components/angular/angular.min.js"></script>
+        <script src="/bower_components/angular/angular-ui-router.min.js"></script>
+        <script src="/bower_components/angular/angular-sanitize.min.js"></script>
+        <script src="/bower_components/angular/angular-animate.min.js"></script>        
+
+        <script src="/app/app.js"></script>
+        <script src="/app/factories/constants.js"></script> 
+        <script src="/app/factories/wordpress.js"></script>        
+        <script src="/app/main/main.js"></script>
+        <script src="/app/articles/articles.js"></script>
     </body>
 </html>

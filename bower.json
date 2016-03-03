@@ -1,0 +1,29 @@
+{
+  "name": "the-bit-jazz-lab",
+  "description": "expermiental site",
+  "main": "index.html",
+  "authors": [
+    "mmfilesi"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/mmfilesi/mmfilesi.github.io",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "q": "1.0.1",
+    "polymer": "Polymer/polymer#^1.2.0",
+    "paper-spinner": "PolymerElements/paper-spinner#~1.1.1"
+  },
+  "devDependencies": {
+    "q": "1.0.1",
+    "angular": "~1.5.0"
+  }
+}

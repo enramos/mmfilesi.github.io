@@ -1,0 +1,62 @@
+<div class="grid-container"> <!-- main layout -->
+
+	<section class="main-container-summaries grid-cell grid-cell-9 grid-sep-right-02">
+
+		<!-- slider -->
+		<!-- #slider -->
+		<div class="msg-danger">
+			Sitio en construcción!
+		</div>
+
+		<h3>textos escritos en the bit jazz band</h3>
+
+		<nav class="secondary-nav" id="js-secondaryNav">
+			<span class="icon-cogs icon"></span>
+			<div class="categories">
+				<span class="link" ng-click="actions.setCat('all');">todas</span> <span class="sep">|</span> 
+				<span class="link" ng-click="actions.setCat('internet');">internet</span> <span class="sep">|</span> 
+				<span class="link" ng-click="actions.setCat('javascript');">javascript</span> <span class="sep">|</span> 
+				<span class="link" ng-click="actions.setCat('php');">php</span> <span class="sep">|</span>
+				<span class="link" ng-click="actions.setCat('wordpress');">wordpress</span> <span class="sep">|</span>
+				<span class="link" ng-click="actions.setCat('html');">html</span> <span class="sep">|</span>
+				<span class="link" ng-click="actions.setCat('electronica');">electrónica</span> <span class="sep">|</span> 
+				<span class="link" ng-click="actions.setCat('varios');">varios</span>                                
+			</div>
+			<div class="pagination fade">
+				<span ng-click="actions.setPag(item.key)" ng-repeat="item in allPags" ng-class="{'active': item.key == actions.getPagActive()}">
+					{{item.value}}
+				</span>
+			</div> 
+		</nav>
+
+		<div ng-if="allPosts==='loading'" class="fade">
+            <tbj-spinner></tbj-spinner>
+		</div>
+
+	  	<div class="flex-container fade" id="js-layoutSummaries">
+	  		<div class='flex-col-4 fade' ng-repeat="post in allPosts">
+				<article class='box-summary box-standar'>
+					<div class='img-container'>
+						<a ui-sref="articles({id:post.id})">
+							<img src="{{post.thumbnail}}">
+						</a>
+					</div>
+					<header class='title'>
+						<a ui-sref="articles({id:post.id})">{{post.title}}</a>
+					</header>
+					<div class='summary' ng-bind-html="post.sumary"></div>
+				</article>
+			</div>
+	  	</div> <!-- #grid sumaries -->
+
+	  <div class="end-layout">
+			<img src="app/styles/img/remate_gris.png">
+	  </div>
+
+	</section>
+
+	<ng-include src="'app/sidebars/main-sidebar.html'"></ng-include>
+
+</div>
+
+<!-- sidebar -->
