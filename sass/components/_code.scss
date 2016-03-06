@@ -1,0 +1,51 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the code snippets
+// -----------------------------------------------------------------------------
+
+.prettyprint { 
+    padding: 1em;
+    background: #fdfdfd;
+    background-image:  url('img/indent-line.png');
+    background-position: 1em 1em;
+    font-family: "the-bit-code-font", "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Monaco", monospace;
+    font-size: 0.9em;
+    margin: 1em;
+    text-align: left;
+    word-wrap: break-word;
+    line-height: 100%;
+    border: 1px solid #ccc;
+    border-top: 1px solid #ededed;
+    border-left: 1px solid #ededed;
+
+    p {
+      margin: 0;
+      line-height: 160%;
+    }
+
+    p:hover {
+      background: #f0f2eb !important;
+    }
+
+    strong {
+      font-weight: bold;
+    }  
+}
+
+.color-code-violet {
+  color: #b30086;
+}
+.color-code-blue {
+  color: #3366ff;
+}
+.color-code-red {
+  color: #2eb82e;
+}
+.color-code-green{
+  color: #cc0000;
+}
+.color-code-orange {
+  color: #FF6600;
+}
+.color-code-comment {
+  color: #8F8F8F;
+}

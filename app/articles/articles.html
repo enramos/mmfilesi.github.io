@@ -1,80 +1,90 @@
-<div class="grid-container"> <!-- main layout -->
+<bj-header></bj-header>
+<div class="grid-container">
+    <section class="main-container-summaries grid-cell grid-cell-9 grid-sep-right-02">
 
-   <article id="post-{{post.id}}" class="articles" itemscope itemtype="http://schema.org/Article">
+        <div ng-if="msgText" class="fade">
+            <tbj-messages msg='{{msgText}}' display='{{msgShow}}' type-msg='{{msgType}}'></tbj-messages>
+        </div>
 
-      <header class="header-articles">
-         <div class="layout flex-container"> 
-            <div class="text-block flex-col-7">           
-               <h2 class="title" id="js-articleTitle">
-                  <span itemprop="name">{{post.title.rendered}}</span>
-               </h2>            
-               <p class="summary">
-               	<span itemprop="description">{{post.excerpt}}</span>
+        <article ng-if="results=='none'" ng-include src="'app/partials/no-results.html'">
+        </article>
 
-               	<!-- <meta itemprop="image" content="<?php if (has_post_thumbnail()) : ?>
-                   <?php 
-                   $image_id = get_post_thumbnail_id();
-                   $image_url = wp_get_attachment_image_src($image_id,'large', true); ?>
-                   <?php echo $image_url[0]; ?> 
-                   <?php else : ?>
-                   http://www.mmfilesi.com/wp-content/uploads/2012/08/sin_imagenes.jpg           
-                   <?php endif; ?>"/> -->
-               </p>  
-            </div>
-            <div class="img-block flex-col-5">  
-               <img src="IMAGEN" class="img-responsive">
-               <p class="caption-image">
-               	título imagen
-               </p>
-            </div>      
-            <meta itemprop="image" content="CAMBIAR TAMBIÉN EN EL TEMA">
-         </div>
-			<div class="aside">
-			  archivado en: 
-			    <?php 
-			      $category = get_the_category();           
-			      echo '<a href="'.get_category_link($category[0]->term_id ).'"><span itemprop="about">'.$category[0]->cat_name.'</span></a>'; ?>
-			        / 
-			      <meta itemprop="datePublished" content="<?php echo get_the_date(Y); ?>-<?php echo get_the_date(m); ?>-<?php echo get_the_date(d); ?>" /><?php echo get_the_date(Y-m-d); ?> 
-			      <?php echo get_the_term_list( $post->ID, 'series','<span> / serie: ', ', ', '</span>' ) ?>
+        <div ng-if="allPost.basicData === 'pending'">
+            <tbj-spinner></tbj-spinner>
+        </div>
 
-			      <div class="pull-right actions">
-			          <span class="icon-search-minus icon-link link" id="js-zoomMin"></span>                                        
-			          <span class="icon-search-plus icon-link link" id="js-zoomMax"></span>
-			          <!-- <span class="icon-file-pdf-o icon-link link" id="js-exportPDF"></span> :: todo -->
-			      </div> 
-			</div>
-			</header>
+         <article ng-if="results!='none' && allPost.basicData !== 'pending'" id="post-{{post.id}}" class="articles fade" itemscope itemtype="http://schema.org/Article">
 
-                        <div class="article-content" id="js-articleBody">
-                            <span itemprop="articleBody">
-                              <?php the_content(); ?>          
-                            </span>
-                        </div>
-
-                    <div class="end-layout">
-                        <img src="<?php bloginfo('template_directory'); ?>/img/remate_gris.png">
+            <header class="header-articles">
+                <div class="layout flex-container"> 
+                    <div class="text-block flex-col-7">           
+                        <h2 class="title" id="js-articleTitle">
+                            <span itemprop="name">{{allPost.basicData.title}}</span>
+                        </h2>            
+                        <p class="summary">
+                            <span itemprop="description">{{allPost.basicData.sumary}}</span>
+                        </p>
                     </div>
+                    <div class="img-block flex-col-5">
+                        <img ng-src="{{allPost.basicData.thumbnail}}" class="img-responsive">
+                        <p class="caption-image">
+                            {{allPost.basicData.thumbnailCap}}
+                        </p>
+                    </div>      
+                    <meta itemprop="image" content="{{allPost.basicData.thumbnail}}">
+                </div>
+                <div class="aside">
+                   archivado en:
+                    <a ui-sref="archive({type: 'category', id: allPost.basicData.idCategory})">
+                        <span itemprop="about">{{allPost.basicData.category}}</span>
+                    </a>
+                    <span ng-if="allPost.basicData.workshop !== ''">
+                        &raquo; 
+                        <a ui-sref="archive({type: 'workshop', id: allPost.basicData.idWorkshop})">
+                         {{allPost.basicData.workshop}}
+                        </a>
+                    </span>
+                    <meta itemprop="datePublished" content="{{allPost.basicData.dateInit}}">
+                     ({{allPost.basicData.date}})
+                    <div class="pull-right actions">
+                        <span class="icon-search-minus icon-link link" id="js-zoomMin" ng-click="zoomArticles = zoomArticles - 0.1"></span>
+                        <span class="icon-search-plus icon-link link" id="js-zoomMax" ng-click="zoomArticles = zoomArticles + 0.1"></span>
+                    </div> 
+                </div>
+            </header>
 
-                      <footer>    
-                        <p class="border-grey">  
-                        <span itemprop="author">marcos m&eacute;ndez filesi</span> &#124;&#124;
-                        Tags: 
-                        <span itemprop="keywords">  
-                          <?php     
-                            echo get_the_tag_list( '', __( ', ', 'thebit' ) ); ?>
-                        </span> </p>  
-                        
-                        <!-- valoraciones -->
-                        <?php require_once('utilidades_rating.php'); ?>
-                        <!-- #valoraciones -->
-                          
-                      </footer><!-- .entry-meta -->
+            <div class="article-content" id="js-articleBody">
+                <div ng-if="allPost.contentData === 'pending'">
+                    <tbj-spinner></tbj-spinner>
+                </div>
+                <div class="fade-ajax-out" ng-class="{'fade-ajax-in': allPost.contentData !== 'pending'}" style="zoom:{{zoomArticles}};">
+                    <span itemprop="articleBody" ng-if="allPost.contentData !== 'pending'" ng-bind-html="allPost.contentData | htmlContent">                
+                    </span>
+                </div>
+            </div>
 
-                    </article>
+            <div class="end-layout">
+                <img src="app/styles/img/remate_gris.png">
+            </div>
 
-	<ng-include src="'app/sidebars/main-sidebar.html'"></ng-include>
+            <footer>    
+                <p class="border-grey">  
+                    <span itemprop="author"><a href="https://twitter.com/mmfilesi">@mmfilesi</a></span> &#124;&#124;
+                    Tags: 
+                    <span itemprop="keywords">
+                        <span ng-repeat="tag in allPost.basicData.tags" class="fade">
+                            <a ui-sref="archive({type: 'tags', id: tag.slug})">{{tag.name}}</a>,
+                        </span>
+                  </span> 
+                </p>
+            </footer>
+
+        </article>
+
+    </section>
+
+    <bj-main-sidebar></bj-main-sidebar>
 
 </div>
 
-<!-- sidebar -->
+<bj-footer></bj-footer>

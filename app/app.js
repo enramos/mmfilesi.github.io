@@ -5,18 +5,30 @@ angular.module('bjLab', [
 	]).
 	config(function($stateProvider, $urlRouterProvider) { 
 
-	  $urlRouterProvider.otherwise('/main');
+	  $urlRouterProvider.otherwise('/');
 
 	  $stateProvider
 		  .state('main', {
-		  		url: '/main',
+		  		url: '/',
 		  		templateUrl: 'app/main/main.html',
 		  		controller: 'mainCtrl'
 		  })
+		  .state('archive', {
+			  	url: '/archive/:type/:id',
+			  	params: {
+			        type: '',
+			        id: ''
+			    },
+			  	templateUrl: 'app/archive/archive.html',
+		  		controller: 'archiveCtrl'
+		  })
 		  .state('articles', {
-			  	url: '/articles"',
+			  	url: '/articles/:id',
 			  	templateUrl: 'app/articles/articles.html',
-		  		controller: 'articlesCtrl'
+		  		controller: 'articlesCtrl',
+		  		params: {
+			        id: ''
+			    },
 		  });
 
 

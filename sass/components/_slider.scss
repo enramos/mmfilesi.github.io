@@ -1,0 +1,51 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the slider component
+// -----------------------------------------------------------------------------
+
+.slider-main-container {
+  margin-bottom: 1em;
+}
+
+.box-slider {
+  padding: 0.8em;
+  border-radius: 10px;
+
+  img {
+    border-radius: 0.5em;
+    box-shadow: 2px 2px 1px #D7D7D7;
+  }
+
+  .title {
+    color: $musimusi;
+    font-size: 1.2em;
+    height: 1.6em;
+    line-height: 140%;
+    font-weight: bold;
+    border-bottom: 1px dotted #d21010;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+  }
+
+  .content {
+    padding-left: 1em;
+    position: relative;
+    font-size: 1em;
+    line-height: 160%;
+
+    .summary {
+      color: $brand-color-light;
+    }
+  }
+
+  .complementary {
+    border-top: 1px solid $light-grey;
+    font-size: 0.9em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+  }
+}

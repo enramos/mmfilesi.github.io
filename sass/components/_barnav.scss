@@ -1,0 +1,39 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the breadcrumb
+// -----------------------------------------------------------------------------
+
+
+.main-nav {
+
+    ul {
+      padding: 8px 15px; 
+      margin-bottom: 20px;
+      list-style: none;
+      background-color: #d4ee5e;
+      border-radius: 4px;
+      margin-top: 0;
+      font-size:1em;
+    }
+
+    li {
+      display: inline-block;
+    }
+
+    a {
+      color: $brand-color-dark;
+      cursor: pointer;
+    }
+
+    a:hover {
+      color: #000;
+    }
+
+    .sep  {
+      font-size:0.6em;
+      font-size: 14px;
+      line-height: 1.4;
+      padding: 0 5px;
+      color: #fff;
+    }  
+
+ } 

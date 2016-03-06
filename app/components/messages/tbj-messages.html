@@ -1,0 +1,75 @@
+<dom-module id="tbj-messages">
+    <template>
+        <style>
+
+        	.msg {
+			    font-weight: bold;
+			    padding: 0.6em;
+			    font-size: 1.2em;
+			    border-radius: 5px;
+			    margin-bottom: 0.5em;
+			    position: relative;
+			    box-shadow: 1px 1px 5px #888888;
+			  	border: 1px solid;
+        	}
+
+            .msg-ko {
+			    border-color: red;
+			    background: #FFD1D1;
+			    color: #6A0027;
+            }
+
+            .msg-ok {
+            	border-color: #09570E;
+		    	background: #EEF7C2;
+		    	color: #03573E;
+		    }
+
+            .close {
+            	position: absolute;
+			    right: 10px;
+			    top: 0;
+			    cursor: pointer;
+            }
+
+            .msg-hidden {
+            	display:none;
+            }
+
+		</style>
+
+		<div class$={{display}}>
+			<div class$="msg {{typeMsg}}">		
+				{{msg}} <span class="close" on-tap="_closeMsg">x</span>
+			</div>
+		</div>
+
+    </template>
+
+    <script>
+        Polymer({
+            is: 'tbj-messages', 
+
+            properties: {
+            	msg: {
+            		type: String
+            	},
+            	display: {
+            		type: String
+            	},
+            	typeMsg: {
+            		type: String
+            	}
+            },
+
+            attached: function() {
+				this.display = 'msg-hidden';
+			},
+
+            _closeMsg: function() {
+            	this.display = 'msg-hidden';
+            }
+        })
+    </script> 
+
+</dom-module>

@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -
+
+
+.main-header {
+	.title {
+		color: red;
+	}
+}
+
+.search-input {
+	border: 0;
+	padding: 0.4em;
+	width: 100%;
+	border: 1px solid #D4EE5E;
+	color: #003D06;
+	border-radius: 5px
+}

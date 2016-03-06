@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the animations
+// -----------------------------------------------------------------------------
+
+.fade {
+   opacity: 1;
+      -moz-transition: opacity .25s ease-in-out;
+      -webkit-transition: opacity .25s ease-in-out;
+   transition: opacity .25s ease-in-out;
+}
+
+.fade-hidden {
+    opacity: 0;
+}
+
+.animation-display-none {
+  display:none;
+}

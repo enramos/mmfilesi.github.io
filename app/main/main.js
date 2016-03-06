@@ -1,23 +1,29 @@
 'use strict';
 
 angular.module('bjLab')
-.controller('mainCtrl', ['$scope', 'configBasic', 'wordpress', function($scope, configBasic, wordpress) {
+.controller('mainCtrl', ['$scope', '$state', 'configBasic', 'allData',  'utils',
+	function($scope, $state, configBasic, allData, utils) {
 
 	var allPostData = 'loading';
 	
-	$scope.allPosts = 'loading';
-	$scope.allPags 	= [];
+	$scope.allPosts 		= 'loading';
+	$scope.allPags 			= [];
+	$scope.allPostsSlider 	= [];
 
-	$scope.allCategories = [
-		{'key': 'all', 'value': 'todas'},
-		{'key': 'internet', 'value': 'internet'},
-		{'key': 'javascript', 'value': 'javascript'},
-		{'key': 'php', 'value': 'php'},	
-		{'key': 'wordpress', 'value': 'wordpress'},	
-		{'key': 'html', 'value': 'html'},	
-		{'key': 'electronica', 'value': 'electrónica'},
-		{'key': 'varios', 'value': 'varios'}
-	];
+	// todo :: pasar a un utils
+	var mgs = {
+		showError: function(msg) {
+			$scope.msgText	= msg;
+			$scope.msgType 	= 'msg-ko';
+			$scope.msgShow 	= 'msg-show';
+		},
+
+		showSuccess: function(msg) {
+			$scope.msgText	= msgText;
+			$scope.msgType 	= 'msg-ok';
+			$scope.msgShow 	= 'msg-show';
+		}
+	};
 
 	$scope.actions = {
 
@@ -91,6 +97,19 @@ angular.module('bjLab')
 			} else {
 				$scope.allPags = [];
 			}
+		},
+
+		// de momento, solo hay uno, pero la idea es
+		// armar aquí el slider :: todo
+		dataSlider: function() {
+			var itemTemp 	= {},
+				i 			= 0,
+				len 		= 1; // cambiar cuando tenga el slider
+
+			for (; i<len; i++) {
+				itemTemp = utils.preparePost(allPostData[i]);
+				$scope.allPostsSlider.push(itemTemp);
+			}
 		}
 
 	};
@@ -98,10 +117,16 @@ angular.module('bjLab')
 	var rest = {
 
 		getPosts: function() {
-			wordpress.getPosts().success(function(data, status, headers, config) {
-				allPostData = data;
-				mapData.filterData();
-			});
+			allData.getPosts().then(
+				function successCallback(data) {
+					allPostData = data;
+					mapData.dataSlider();
+					mapData.filterData();
+
+				}, function errorCallback(response) {
+				    // todo :: implementar interceptores
+				    mgs.showError('error en la conexión');
+				});
 		}
 
 	};

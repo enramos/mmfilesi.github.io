@@ -1,19 +1,36 @@
 <aside class="sidebar grid-cell grid-cell-3">
 
+	<div class="box-sidebar box-standar" ng-if="postLoaded !== 'pending'">
+      <header class="title">
+       	Buscar
+       	<span class="icon-search icon"></span>
+    	</header>
+	   <div class="content">
+	    	<input type="text" class="search-input" ng-keypress="actions.searchPost()" ng-model="inputSearch.value" ng-blur="actions.resetSearch()">
+	    	<dl>
+	    		<dt ng-repeat-start="post in postFiltered | limitTo:8" class="fade">
+	    			<a ui-sref="articles({id:post.name})">{{post.title}}</a></dt>
+  				<dd ng-repeat-end class="fade">{{post.sumary}}</dd>
+	    	</dl>
+	    	<div ng-if="postFiltered.length==0 && inputSearch.value.length>2" ng-include src="'app/partials/no-results.html'">
+        	</div>
+	   </div>
+  	</div>
+
 	<div class="box-sidebar box-standar">
 		<header class="title">
 			spacename
-			<span class="icon-flask icon"></span>
+			<span class="icon-code-fork icon"></span>
 		</header>
 		<div class="content" itemscope="" itemtype="http://schema.org/CreativeWork">
          <div class="pull-right">
             <img src="http://www.mmfilesi.com/wp-content/uploads/2012/09/mmfilesi1.png" width="64px" height="64px" itemprop="image">
          </div>
-			<span itemprop="affiliation">The Bit Jazz Lab</span> es un fork experimental de 
+			<span itemprop="affiliation">The Bit Jazz Lab</span> es una réplica experimental de 
 			<a href="http://www.mmfilesi.com/">The Bit Jazz Band,</a>
 			ambos sitios escritos por 
 	      <div itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-	         <span itemprop="name">Marcos Méndez Filesi (@mmfilesi)</span>, 											
+	         <span itemprop="name">Marcos Méndez Filesi (@mmfilesi)</span>, 
 	         desde <span itemprop="address">el fondo del mar de groenlandia.</span>
 	      </div>
 		</div>
@@ -45,28 +62,22 @@
   	<div class="box-sidebar box-standar">
       <header class="title">
        	Talleres
-       	<span class="icon-code-fork icon"></span>
+       	<span class="icon-flask icon"></span>
     	</header>
 	   <div class="content">
 	      <ul class="list-georgian">
-				<li><a href="http://www.mmfilesi.com/blog/series/web-components/">web components y polymer</a></li>
-				<li><a href="http://www.mmfilesi.com/blog/series/express-2/">express</a></li>
-				<li><a href="http://www.mmfilesi.com/blog/series/node-2/">node</a></li>
-				<li><a href="http://www.mmfilesi.com/blog/series/mongo/">mongo</a></li>
-				<li><a href="http://www.mmfilesi.com/blog/series/angular/">angular con dinosaurios</a></li>
-				<li><a href="http://www.mmfilesi.com/blog/series/cordova/">cordova</a></li>
-				<li><a href="http://www.mmfilesi.com/blog/series/dom/">trasteando con el dom</a></li>
-				<li><a href="http://www.mmfilesi.com/blog/series/javascript-orientado-a-objetos/">javascript orientado a objetos</a></li>
-				<li><a href="http://www.mmfilesi.com/blog/series/php-orientado-a-objetos/">php orientado a objetos</a></li>
-				<li><a href="http://www.mmfilesi.com/blog/series/wordpress-desde-cero/">wordpress desde cero</a></li>
-				<li><a href="http://www.mmfilesi.com/blog/series/jquery-desde-cero/">jquery desde cero</a></li>
+		      <li ng-repeat="item in workshops">
+		      	<a ui-sref="archive({type:'workshop', id:item.key})">
+		      		{{item.value}}
+		      	</a>
+		      </li>
 	      </ul>
 	   </div>
   	</div>
 
   	<div class="box-sidebar box-standar">
      	<header class="title">
-        otros blogs
+        tännhauser cabaret
         <span class="icon-user-secret icon"></span>
     	</header>
     <div class="content">
@@ -82,8 +93,21 @@
         <span class="icon-tags icon"></span>
     </header>
     <div class="content">
-      <?php wp_tag_cloud( 'smallest=8&largest=16&number=50&order=rand' ); ?>
+ 		<div ng-if="allTags.length === 0">
+			<tbj-spinner></tbj-spinner>
+		</div>
+		<div class="fade-ajax-out" ng-class="{'fade-ajax-in': allTags.length !== 0}">
+		<span ng-repeat="tag in allTags">
+			<a ui-sref="archive({'type':'tags', 'id':tag.slug})">
+				{{tag.name | lowercase }}
+			</a> 
+			<span class="sep-tags" ng-if="$index !== 49">
+				·
+			</span>
+		</div>
     </div>
   </div>
+
+  <img src="app/styles/img/technologies.png" class="img-center">
 
 </aside>

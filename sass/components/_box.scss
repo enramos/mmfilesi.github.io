@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the box common
+// -----------------------------------------------------------------------------
+
+
+.box-standar {
+  border: 1px solid;
+  border-top-color: $border-light;
+  border-left-color: $border-light;
+  border-bottom-color: $border-dark;
+  border-right-color: $border-dark;
+}

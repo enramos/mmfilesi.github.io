@@ -1,0 +1,51 @@
+<bj-header></bj-header>
+
+<div class="grid-container"> <!-- main layout -->
+
+	<section class="main-container-summaries grid-cell grid-cell-9 grid-sep-right-02">
+
+		<div ng-if="msgText" class="fade">
+			<tbj-messages msg='{{msgText}}' display='{{msgShow}}' type-msg='{{msgType}}'></tbj-messages>
+		</div>
+
+		<div ng-if="results!='none'">
+			<header class="header-articles">
+				<h3>{{mainTitle}}</h3> 
+				<span ng-click="orderPost=!orderPost" class="icon" ng-class="{ 'icon-sort-alpha-asc' : orderPost == false, 'icon-sort-alpha-desc' : orderPost == true}">
+				</span>
+			</header>
+			<div ng-if="allPosts.length===0">
+				<tbj-spinner></tbj-spinner>
+			</div>
+	        <div class="category-content">
+	            <article class="category-box box-standar flex-container fade" 
+	            ng-repeat="post in allPosts | orderBy:'date':orderPost">
+	                <div class="block-img">
+	                    <a ui-sref="articles({id:post.name})">
+	                    	<img ng-src="{{post.thumbnail}}" class="img-links img-responsive"> 
+	                    </a>               
+	                </div>
+	                <div class="block-summary">   
+	                    <h5 class="title">
+	                    	<a ui-sref="articles({id:post.name})">{{post.title}}</a>
+	                    </h5>
+		                <div ng-bind-html="post.sumary" class="summary"></div>
+	                </div>
+	            </article>
+	    	</div>
+	    </div>
+
+        <article ng-if="results=='none'" ng-include src="'app/partials/no-results.html'">
+        </article>
+
+		<div class="end-layout">
+			<img src="app/styles/img/remate_gris.png">
+		</div>
+
+	</section>
+
+	<bj-main-sidebar></bj-main-sidebar>
+
+</div>
+
+<bj-footer></bj-footer>

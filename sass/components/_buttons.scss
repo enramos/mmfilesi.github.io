@@ -1,0 +1,25 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+
+.button-circle {
+	display: block;
+	background-color: #f7f7f7;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#e7e7e7));
+	background-image: -webkit-linear-gradient(top, #f7f7f7, #e7e7e7); 
+	background-image: -moz-linear-gradient(top, #f7f7f7, #e7e7e7); 
+	background-image: -ms-linear-gradient(top, #f7f7f7, #e7e7e7); 
+	background-image: -o-linear-gradient(top, #f7f7f7, #e7e7e7); 
+	margin: 6px;
+	width: 24px;
+	height: 24px;
+	position: relative;
+	text-align: center;
+	line-height: 24px;
+	border-radius: 50%;
+	box-shadow: 1px 1px 2px #aaa, inset 1px 1px 3px #fff;
+
+	font-weight: bold;
+	color: #000;
+	font-size: 22px;
+}

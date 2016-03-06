@@ -1,0 +1,61 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the sidebar of the site/application.
+// -----------------------------------------------------------------------------
+
+
+.inline-list {
+	list-style-type: none;
+    width: 100%;
+    vertical-align: top;
+    padding: 0;
+
+    li {
+    	display: inline-block;
+    }
+}
+
+.sidebar {}
+
+.box-sidebar {
+    padding: 0.4em;
+    margin: 0;
+    margin-bottom: 2em;
+    border-radius: 5px;
+
+	.title {
+        color: $dark-grey;
+        font-size: 1em;
+        height: 1.6em;
+        line-height: 140%;
+        font-weight: bold;
+        border-bottom: 1px dotted $dark-grey;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        position: relative;
+
+        .icon {
+        	color: #73746E;
+    	    margin: 0.2em;
+    	    font-size: 1.4em;
+    	    position: absolute;
+    	    top: -6px;
+    	    right: 0px
+        }
+	}
+
+	.content {
+        color: #737373;
+        font-size: 1em;
+        line-height: 160%;
+	}
+
+	.social {
+		@extend .inline-list;
+		margin: 0 auto;
+		margin-top: 1em;
+
+		li {
+			margin: 0 0.2em;
+		}
+	}
+}

@@ -1,0 +1,117 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the license
+// -----------------------------------------------------------------------------
+
+.secondary-nav {
+    padding-right: 1em;
+    background: #fff url('img/fondo_sup_dcha_micro_rojo.png')  no-repeat right top;
+    width: 100%;
+    border-radius: 5px;
+
+	.icon {
+		position: absolute;
+	    font-size: 2em;
+	    color: #ededed;
+	}
+
+    .block-first-child  {
+		width: 30px;
+		color: #808080;
+	}
+
+	.link {
+		color: #666;
+	}
+
+	.link:hover, .active {
+		color: #000;
+	}
+
+	.categories {
+		text-align: center;
+	}
+
+	.category-nav {
+		margin-bottom: 1em;
+
+		.subtitle {
+			font-size: 1.2em;
+			color: $dark-grey;
+		}
+
+		.options {
+			font-weight: bold;
+			color: $dark-grey;
+			text-align: center;
+		}
+
+	}
+
+	.sep  {
+      font-size:0.6em;
+      font-size: 14px;
+      line-height: 1.4;
+      padding: 0 5px;
+      color: #ededed;
+    }  
+}
+
+.pagination {
+    text-align: center;
+    height: 1.2em;
+    margin-top: 0.2em;
+    span {
+		padding-top: 3px;
+	    font-size: 0.7em;
+	    cursor: pointer;
+	    color: #ccc;
+	    cursor: pointer;
+	    width: 2em;
+	    display: inline-block;
+	    height: 2em;
+	    text-align: center;
+	    vertical-align: middle;
+	 /*   background: #ededed; */
+	   /*  color: #666; */
+	    font-weight: bold;
+	}
+
+	span:hover, .active {
+		color: #000;
+	}
+
+}
+
+.fixed-left {
+    position: fixed;
+    top: 10px;
+    left: 12px;
+    border: 1px solid #ccc;
+    background: #fff;
+    width: 120px;
+    height: auto;
+    box-shadow: 2px 2px 2px #9E9E9E;
+
+    .link  {
+		display: block;
+		text-align: left;
+		padding-left:1em;
+	}
+
+    .categories {
+	    text-align: left;
+	    padding-top: 0.5em;
+	}
+
+	.icon,
+    .sep {
+    	display: none;
+    }
+
+    .pagination {
+    	text-align: center;
+    	height: auto;
+    	margin-top: 0.4em;
+    }
+
+}

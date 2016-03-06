@@ -1,0 +1,43 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the home page.
+// -----------------------------------------------------------------------------
+
+.slider-main-container {
+    width: 100%;
+   /*  min-height: 50px;
+    max-height: 230px; */
+}
+
+.category-box .block-summary .title {
+    width: 90%;
+    font-size: 1.1em;
+    margin-bottom:0.5em;
+}
+
+.category-box {
+    background: #FDFDFD;
+}
+
+
+.main-container-summaries .header-articles {
+    position: relative;
+    margin: 0 1em;
+}
+
+.main-container-summaries .header-articles h3 {
+    font-size: 1.5em;
+    line-height: 80%;
+    color: #666;
+}
+
+.main-container-summaries .header-articles .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+.main-container-summaries .header-articles .icon:hover {
+    color: #D21010;
+}

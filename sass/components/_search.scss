@@ -1,0 +1,36 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the search button
+// -----------------------------------------------------------------------------
+
+.main-nav {
+
+  .search {
+    float: right!important;
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+    margin: 0.4em;
+  }
+
+  .inputSearch {  
+    border: 0;
+    border-bottom: 1px solid #006900;
+    padding: 0.2em;
+    color: #006900;
+    background: #d4ee5e;
+  }
+
+  .inputSearch:focus{
+    outline: none;
+  }
+
+  .max-h {
+    max-height: 340px;
+    overflow-y: auto;
+  }
+
+}
+
+  .inputSearch::-webkit-input-placeholder { color: #fff; text-align: right; }
+  .inputSearch:-moz-placeholder { color: #fff; text-align: right; }
+  .inputSearch:-ms-input-placeholder { color: #fff; text-align: right; }
