@@ -1,0 +1,132 @@
+<dom-module id="gist-list">
+    <template>
+
+        <style>
+        .fade-ajax-out {
+            transition:1s linear all;
+            opacity:0;
+            background-color: #fcffdf;
+        }
+        .fade-ajax-in {
+            opacity:1;
+            background-color: #fff;
+        }
+        .view-all, .msg-error {
+            margin: 0 auto;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+        }
+        .hidden {
+            display:none;
+        }
+        </style>
+
+        <div id="msgError" class="msg-error" is="dom-if" if="msgError">
+            {{msgError}}
+        </div>
+        <div id="preloadContainer">
+            <tbj-spinner></tbj-spinner>
+        </div>
+        <ul id="gistContainer" class="fade-ajax-out">           
+            <template is="dom-repeat" items="{{gists}}">
+               <li><a href$="{{item.uri}}">{{item.desc}}</a></li>
+            </template>
+        </ul>
+        <div class="view-all">
+            <a href$="https://gist.github.com/{{user}}">[ ver todos ]</a>
+        </div>
+
+    </template>
+
+    <script>
+        Polymer({
+            is: 'gist-list', 
+
+            properties: {
+            	user: {
+            		type: String
+            	},
+                limit: {
+                    type: Number
+                },
+            	gists: {
+            		type: Array
+            	},
+                msgError: {
+                    type: String,
+                    value: ''
+                }
+            },
+
+            prepareData: function(data) {
+                var uriGist,
+                    descGist,
+                    itemTemp = {},
+                    arrTemp  = [],
+                    i = 0,
+                    len = ( this.limit < data.length ) ? this.limit : data.length;
+
+                for (; i<len; i++) {
+                    itemTemp        = {};
+                    itemTemp.uri    = 'https://gist.github.com/'+this.user+'/'+data[i].id;
+                    itemTemp.desc   = ( data[i].description ) ? data[i].description : 'gist';
+                    arrTemp.push(itemTemp);
+                }
+                return arrTemp;
+            },
+
+            showResponse: function(data) {
+                var allGist;
+
+                try {
+                    allGist = JSON.parse(data);           
+                }
+                catch(err) {
+                    self.showError('error parseando los datos: '+err);
+                    return;
+                }
+                Polymer.dom(this.$.gistContainer).classList.add('fade-ajax-in');
+                allGist = this.prepareData(allGist);
+                this.gists = allGist;
+            },
+
+            showError: function(error) {
+                this.msgError = error;
+            },
+
+            removeLoader: function() {
+                Polymer.dom(this.$.preloadContainer).classList.add('hidden');
+            },
+
+            getGists: function() {
+                var req     = new XMLHttpRequest(),
+                    self    = this;
+                    urlGist = 'https://api.github.com/users/'+this.user+'/gists';
+                
+                req.open('GET', urlGist, true);  
+                req.setRequestHeader('Content-Type', 'application/json');
+
+                req.onreadystatechange = function(e) {
+                     if ( req.readyState !== 4 ) {
+                      return;
+                    }
+                    self.removeLoader();
+                    if ( [200,304].indexOf(req.status) === -1 ) {
+                        self.showError('error cargando los datos');
+                    } else {
+                        self.showResponse(req.responseText);
+                    }
+                };
+  
+                req.send(); 
+            },
+
+            ready: function() {
+                this.getGists();
+			}
+
+        })
+    </script> 
+
+</dom-module>

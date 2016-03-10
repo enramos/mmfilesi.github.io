@@ -1,23 +1,47 @@
-<dom-module id="tbj-slider">
+<dom-module id="foo-component">
     <template>
         <style>
 		</style>
 
-		</div>
+		<button on-tap="addFruit">Añadir fruta</button>
+
+        La primera fruta es: {{getFruit(fruits.*, 0)}}
 
     </template>
     <script>
         Polymer({
-            is: 'tbj-slider',
+            is: 'foo-component',
             properties: {
-                articles: {
-                    Type: Array
+                fruits: {
+                    Type: Array,
+                    value: ['coco', 'cerezas', 'higos']
                 }
             },
 
-            ready: function() {
-                // TODO
+            getFruit(arr, index) {
+                return arr.base[index];
+            },
+
+            observeFruits: function(changes) {
+                if ( !changes ) {
+                    return;
+                }
+                changes.indexSplices.forEach(function(item) {                   
+                    var i = 0;
+                    var len = item.removed.length;
+                    console.log('Los elementos suprimidos son: ');
+                    for (; i<len; i++) {
+                        console.log(item.removed[i]);
+                    }
+                    console.log('y la operación realizada ha sido un ', item.type);
+                });
+
+            },
+
+            addFruit: function() {
+               this.unshift('fruits', 'aguacates');
             }
         })
     </script>            
 </dom-module>
+

@@ -5,7 +5,8 @@ angular.module('bjLab')
 	return {
 
 		getPosts: function() {
-			return $http.get(urlBase + 'tbjb/v1/posts');
+			//return $http.get(urlBase + 'tbjb/v1/posts');
+			return $http.get('./app/cache-rest/post.json');
 		},
 
 		getPost: function(idPost) {
